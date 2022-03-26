@@ -10,6 +10,56 @@ import math
 
 import torch.nn as nn
 import torch.nn.init as init
+import torchvision
+from PIL import Image
+import torchvision.transforms as transforms
+from typing import Any, Callable, Optional, Tuple
+import pickle
+
+ToTensor_transform = transforms.Compose([
+    transforms.ToTensor(),
+])
+
+class MYCIFAR10(torchvision.datasets.CIFAR10):
+    """CIFAR10 Dataset.
+    """
+
+    def __init__(
+        self,
+        root: str,
+        train: bool = True,
+        transform: Optional[Callable] = None,
+        target_transform: Optional[Callable] = None,
+        download: bool = False,
+        data_name: str = "cifar10_1024_4class"
+    ) -> None:
+
+        super(MYCIFAR10, self).__init__(root, train=train, transform=transform, target_transform=target_transform, download=download)
+        self.train = train
+        if data_name != '':
+            sampled_filepath = os.path.join(root, "sampled_cifar10", "{}.pkl".format(data_name))
+            with open(sampled_filepath, "rb") as f:
+                sampled_data = pickle.load(f)
+            if train:
+                self.data = sampled_data["train_data"]
+                self.targets = sampled_data["train_targets"]
+            else:
+                self.data = sampled_data["test_data"]
+                self.targets = sampled_data["test_targets"]
+
+    def __getitem__(self, index):
+        img, target = self.data[index], self.targets[index]
+        img = Image.fromarray(img)
+
+        if self.transform is not None:
+            img = self.transform(img)
+        else:
+            img = ToTensor_transform(img)
+
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+
+        return img, target
 
 
 def get_mean_and_std(dataset):
@@ -40,56 +90,6 @@ def init_params(net):
             init.normal(m.weight, std=1e-3)
             if m.bias:
                 init.constant(m.bias, 0)
-
-
-_, term_width = os.popen('stty size', 'r').read().split()
-term_width = int(term_width)
-
-TOTAL_BAR_LENGTH = 65.
-last_time = time.time()
-begin_time = last_time
-def progress_bar(current, total, msg=None):
-    global last_time, begin_time
-    if current == 0:
-        begin_time = time.time()  # Reset for new bar.
-
-    cur_len = int(TOTAL_BAR_LENGTH*current/total)
-    rest_len = int(TOTAL_BAR_LENGTH - cur_len) - 1
-
-    sys.stdout.write(' [')
-    for i in range(cur_len):
-        sys.stdout.write('=')
-    sys.stdout.write('>')
-    for i in range(rest_len):
-        sys.stdout.write('.')
-    sys.stdout.write(']')
-
-    cur_time = time.time()
-    step_time = cur_time - last_time
-    last_time = cur_time
-    tot_time = cur_time - begin_time
-
-    L = []
-    L.append('  Step: %s' % format_time(step_time))
-    L.append(' | Tot: %s' % format_time(tot_time))
-    if msg:
-        L.append(' | ' + msg)
-
-    msg = ''.join(L)
-    sys.stdout.write(msg)
-    for i in range(term_width-int(TOTAL_BAR_LENGTH)-len(msg)-3):
-        sys.stdout.write(' ')
-
-    # Go back to the center of the bar.
-    for i in range(term_width-int(TOTAL_BAR_LENGTH/2)+2):
-        sys.stdout.write('\b')
-    sys.stdout.write(' %d/%d ' % (current+1, total))
-
-    if current < total-1:
-        sys.stdout.write('\r')
-    else:
-        sys.stdout.write('\n')
-    sys.stdout.flush()
 
 def format_time(seconds):
     days = int(seconds / 3600/24)

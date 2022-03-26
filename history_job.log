@@ -1,0 +1,75 @@
+Sun Jan 30 16:39:34 EST 2022
+44877271
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 16:39:41 EST 2022
+44877272
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 16:40:17 EST 2022
+44877273
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 16:43:14 EST 2022
+44877287
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 16:43:20 EST 2022
+44877288
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 16:56:36 EST 2022
+44877360
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 16:56:44 EST 2022
+44877365
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Sun Jan 30 17:46:02 EST 2022
+44877748
+CIFAR10
+python main.py --num_class 4 --data_name cifar10_20000_trotation_object
+python main.py --num_class 4 --data_name cifar10_20000_tobject_rotation
+---------------------------------------------------------------
+Sun Jan 30 17:46:09 EST 2022
+44877749
+CIFAR10
+python main.py --num_class 8 --data_name cifar10_20000_tcolor_object
+python main.py --num_class 4 --data_name cifar10_20000_tobject_color
+---------------------------------------------------------------
+Thu Feb  3 21:45:37 EST 2022
+45049325
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
+Thu Feb  3 21:46:11 EST 2022
+45049391
+CIFAR10
+python main.py
+python main.py --num_class 8 --data_name cifar10_20000_tricolor
+python main.py --num_class 4 --data_name cifar10_20000_trirotation
+---------------------------------------------------------------
